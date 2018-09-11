@@ -8,7 +8,7 @@ const  TimeListItem= props =>{
         <ListItem
             avatar={time.escudos["30x30"]}
             title={time.nome}
-            subtitle={`posição ${time.posicao}º`}
+            subtitle={`${time.posicao}º colocado`}
             key={time.nome}
         />);
    

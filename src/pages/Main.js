@@ -1,18 +1,33 @@
 import React from 'react';
-import {ScrollView} from 'react-native';
-import {List,ListItem} from 'react-native-elements';
 import axios from 'axios';
 
 import {
-    TimeList
+    Menu
 } from '../components';
 
 export default class Main extends React.Component{
     constructor(props){
         super(props);
+        
         this.state={
             _clubes:[],
-            _partidas:[]
+            _partidas:[],
+            _buttons:[
+                {
+                    title:'Tabela do Campeonato',
+                    key:this.title,
+                    backgroundColor:'',
+                    onPress:(page,state)=>this.props.navigation.navigate(page,state),
+                    page:'TabelaColocacaoPage',
+                },
+                {
+                    title:'Próxima Rodada',
+                    key:this.title,
+                    backgroundColor:'',
+                    onPress:(page,state)=>this.props.navigation.navigate(page,state),
+                    page:'PartidasListPage' 
+                }
+            ]
         }
     }
 
@@ -31,7 +46,9 @@ export default class Main extends React.Component{
 
     render(){
         return (            
-            <TimeList times={this.state._clubes} partidas={this.state._partidas}/>             
+            <Menu buttons={this.state._buttons}
+                  times={this.state._clubes} 
+                  partidas={this.state._partidas}/>             
         );
     }
 }

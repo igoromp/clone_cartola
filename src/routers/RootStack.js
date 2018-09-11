@@ -2,16 +2,24 @@ import React from 'react';
 import {createStackNavigator} from 'react-navigation';
 
 //Routers
-import {Main} from '../pages'
+import {Main,TabelaColocacaoPage,PartidasListPage} from '../pages'
 
 const RootStack=  createStackNavigator({
     'Main':{
-        screen:Main
+        screen:Main,
+        navigationOptions:{title:'CartolaFC.Clone'}
     },
+    'TabelaColocacaoPage':{
+        screen:TabelaColocacaoPage,
+        navigationOptions:{title:'Tabela do Campeonato'}
+    },
+    'PartidasListPage':{
+        screen:PartidasListPage,
+        navigationOptions:{title:'Próximos Jogos'}
+    }
 
 },{
     navigationOptions:{
-        title:'CLONE CARTOLA',
         headerTintColor:'white',
         headerStyle:{
             backgroundColor:'rgba(222,103,46,0.85)',        
