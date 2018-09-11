@@ -10,6 +10,7 @@ const  TimeListItem= props =>{
             title={time.nome}
             subtitle={`${time.posicao}º colocado`}
             key={time.nome}
+            hideChevron
         />);
    
     
