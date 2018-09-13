@@ -1,7 +1,7 @@
 import React from 'react';
 import {ScrollView} from 'react-native';
 import {Button} from 'react-native-elements';
-import {Grid,Tools} from '../utils';
+import {Tools} from '../utils';
 
 
 const Menu = props =>{
@@ -17,7 +17,7 @@ const Menu = props =>{
                         <Button buttonStyle={{
                                 marginTop:10,
                                 marginBottom:5,
-                                backgroundColor:(btn.backgroundColor=='')?'#8ac54e':btn.backgroundColor,
+                                backgroundColor:(btn.backgroundColor=='')?'rgb(88,141,85)':btn.backgroundColor,
                                 }} 
                             key={Tools.generateKey() } 
                             fontSize={16}

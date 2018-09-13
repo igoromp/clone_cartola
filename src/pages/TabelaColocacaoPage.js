@@ -1,7 +1,6 @@
 import React from 'react';
 import {SectionList} from 'react-native';
 import {HeaderList,TimeListItem} from '../components';
-import {Buttons} from 'react-native-elements';
 import {Tools} from '../utils';
 
 
@@ -21,22 +20,33 @@ export default class TabelaColocacaoPage extends React.Component{
                     ),
                     keyExtractor:(item)=>item.nome 
                 }
-            ]                        
+            ],
+            _statelist:{
+                status:'crescente',
+                icon:'arrow-downward'
+            },
+
         };
        
 
     }
 
     componentDidMount() {
-        this.ordenarTimesPorPosicaoCrescente(this.state._times)
+        this.ordenar(this.state._times)
+        console.log(this.state._statelist);
     }
 
-    ordenarTimesPorPosicaoCrescente(times){
-        
+    ordenar(times){
+        let {_statelist} = this.state;
+        let status;
         const ordenado =  Object.values(times).sort((e1,e2) => {
-            return e1.posicao - e2.posicao;
+            return  _statelist.status =='crescente'? e1.posicao - e2.posicao : e2.posicao - e1.posicao ;          
         }).filter(e=> e.posicao < 11);
 
+
+        _statelist.status = _statelist.status== 'crescente'?'descrecente':'crescente';
+        _statelist.icon = _statelist.status=='crescente'?'arrow-upward':'arrow-downward'; 
+              
         this.setState({
             _sections:[
                 {
@@ -47,29 +57,11 @@ export default class TabelaColocacaoPage extends React.Component{
                     ),
                     keyExtractor:(item)=>item.id 
                 }
-            ]       
+            ], 
+            _statelist:_statelist      
         });
     }
 
-    ordenarTimesPorPosicaoDecrescente(times){        
-        const ordenado = Object.values(times).sort((e1,e2) => {
-            return e2.posicao - e1.posicao;
-        }).filter(e=> e.posicao < 11);
-        
-        
-        this.setState({
-            _sections:[
-                {
-                    data:ordenado,
-                    title:"Clubes",
-                    renderItem: ({item},index)=>(
-                        <TimeListItem time={item} />
-                    ),
-                    keyExtractor:(item)=>item.nome 
-                }
-            ]       
-        });
-    }
 
 
     render(){
@@ -78,8 +70,10 @@ export default class TabelaColocacaoPage extends React.Component{
             <SectionList
                 renderSectionHeader={({section: {title}}) => (
                     <HeaderList  title={title} 
-                        up={()=>this.ordenarTimesPorPosicaoCrescente(this.state._times)} 
-                        down={ ()=>this.ordenarTimesPorPosicaoDecrescente(this.state._times)} 
+                        /* up={()=>this.ordenarTimesPorPosicaoCrescente(this.state._times)} 
+                        down={ ()=>this.ordenarTimesPorPosicaoDecrescente(this.state._times)}  */
+                        call={()=>this.ordenar(this.state._times)}
+                        icon={this.state._statelist.icon}
                         buttons={true}
                         keyExtractor={()=>Tools.generateKey()}
                         />

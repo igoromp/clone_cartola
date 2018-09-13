@@ -4,10 +4,9 @@ import {Button,ButtonGroup} from 'react-native-elements';
 import {Tools} from '../utils';
 
 const HeaderList = props=>{
-    const {title,up,down,buttons} = props;
+    const {title,/* up,down */call,icon,buttons} = props;
    
-    
-
+    console.log(icon);
     return( 
         <View style={Styles.container} key={()=>Tools.generateKey()}>
             <Text style={Styles.label}>{title}</Text> 
@@ -17,19 +16,12 @@ const HeaderList = props=>{
                         <Button 
                         backgroundColor='transparent'
                         buttonStyle={Styles.btn}
-                        icon={{name:'arrow-downward'}}
+                        icon={{name:icon,style:{marginRight:0}}}
                         iconStyle={{alignSelf:'center'}}
-                        onPress={()=>down()
+                        onPress={()=>call()
                         }                
-                        />,
-                        <Button 
-                            backgroundColor='transparent'
-                            buttonStyle={Styles.btn}
-                            icon={{name:'arrow-upward'}}
-                            iconStyle={{alignSelf:'center'}}
-                            onPress={()=>up()}
-                                      
                         />
+                        
                     </View>
                 : 
                 null
@@ -55,7 +47,7 @@ const Styles = StyleSheet.create({
         marginBottom:5,
     },
     btnContainer: {
-        flexDirection: 'row'
+        flexDirection: 'row',
     },
     label:{
         flex:1,        

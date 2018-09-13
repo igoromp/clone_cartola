@@ -32,8 +32,7 @@ const TimeList = props=>{
         return new Date(DateUtil.dataISOPattern(e1.partida_data)).getTime() - new Date(DateUtil.dataISOPattern(e2.partida_data)).getTime();
     });
 
-    const _sections =[
-        
+    const _sections =[        
         {
             data:partidasTratadas,
             title:"Partidas",
